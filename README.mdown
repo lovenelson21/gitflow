@@ -133,6 +133,13 @@ The ``-d`` flag will accept all defaults.
   For support branches, the `<base>` arg must be a commit on `master`.
 
 
+Disable release merge back develop
+===================================
+* Custom release finish
+  
+  Stop merge back to develop branch when release finish.
+
+
 Showing your appreciation
 =========================
 A few people already requested it, so now it's here: a Flattr button.
