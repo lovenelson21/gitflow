@@ -303,8 +303,8 @@ cmd_finish() {
 	echo "- Release branch has been merged into '$MASTER_BRANCH'"
 	if noflag notag; then
 		echo "- The release was tagged '$tagname'"
-	#fi
-	#echo "- Release branch has been back-merged into '$DEVELOP_BRANCH'"
+	fi
+	echo "- Release branch has been back-merged into '$DEVELOP_BRANCH'"
 	if flag keep; then
 		echo "- Release branch '$BRANCH' is still available"
 	else
