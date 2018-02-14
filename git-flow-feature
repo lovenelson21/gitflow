@@ -213,12 +213,20 @@ cmd_start() {
 		require_branches_equal "$DEVELOP_BRANCH" "$ORIGIN/$DEVELOP_BRANCH"
 	fi
 
-	mkdir "$NAME"
-	printf '/* \n!'"$NAME"'/' > .gitignore
-
 	# create branch
 	if ! git_do checkout -b "$BRANCH" "$BASE"; then
 		die "Could not create feature branch '$BRANCH'"
+	fi
+
+	if [ ! -d "$NAME" ]; then
+	  	mkdir "$NAME"
+		printf '/*\n!/.gitignore\n!'"$NAME"'/' > .gitignore
+		git_do add '.'
+		git_do commit -am 'init featue'"$Name"
+		git_do push origin 'feature/'"$NAME"
+	else
+		rm -fm .gitignore
+		echo "Could not create feature subfolder and gitignore '$NAME'"
 	fi
 
 	echo
