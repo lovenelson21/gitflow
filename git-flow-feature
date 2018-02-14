@@ -213,6 +213,9 @@ cmd_start() {
 		require_branches_equal "$DEVELOP_BRANCH" "$ORIGIN/$DEVELOP_BRANCH"
 	fi
 
+	mkdir "$NAME"
+	printf '/* \n!'"$NAME"'/' > .gitignore
+
 	# create branch
 	if ! git_do checkout -b "$BRANCH" "$BASE"; then
 		die "Could not create feature branch '$BRANCH'"
