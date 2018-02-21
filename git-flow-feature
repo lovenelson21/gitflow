@@ -219,9 +219,9 @@ cmd_start() {
 	fi
 
 	if [ ! -d "$NAME" ]; then
-	  	mkdir "fs/$NAME"
-		printf '/*\n!/.gitignore\n/!fs/'"$NAME"'/' > .gitignore
-		#git_do add '.'
+	  	mkdir "$NAME"
+		printf '/*\n!/.gitignore\n/!'"$NAME"'/' > .gitignore
+		git_do add '.'
 		git_do commit -am 'init featue'"$Name"
 		git_do push origin 'feature/'"$NAME"
 	else
