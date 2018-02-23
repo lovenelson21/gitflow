@@ -219,9 +219,21 @@ cmd_start() {
 	fi
 
 	if [ ! -d "$NAME" ]; then
-	  	mkdir "fs/$NAME"
-		printf '/*\n!/.gitignore\nfs/!'"$NAME"'/' > .gitignore
-		#git_do add '.'
+	  	mkdir "$NAME";
+		#printf '/*\n!/.gitignore\n!'"$NAME"'/' > .gitignore
+
+		arr=(${NAME//// });
+		length=${#arr[@]}
+		let "totalChar = $length - 1";
+
+		if [ "$totalChar" == 0 ]; then
+			printf '/*\n!'"$NAME" > .gitignore
+		else
+			printf '*/*\n!'"$NAME" > .gitignore
+		fi
+
+		#printf '*/*\n!'"$NAME" > .gitignore
+		git_do add '.'
 		git_do commit -am 'init featue'"$Name"
 		git_do push origin 'feature/'"$NAME"
 	else
